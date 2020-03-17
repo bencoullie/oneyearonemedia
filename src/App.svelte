@@ -1,5 +1,5 @@
 <script>
-	let name = 'world';
+  import Profiles from './components/Profiles/Profiles.svelte'
 </script>
 
-<h1>Hello {name}!</h1>
+<Profiles />
