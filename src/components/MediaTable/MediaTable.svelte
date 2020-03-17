@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       {#each media as item}
-        <MediaRow name={item.name} giver={item.giver} />
+        <MediaRow name={item.name} giver={item.giver} done={item.done} />
       {/each}
     </tbody>
   </table>

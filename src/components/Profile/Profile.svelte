@@ -7,7 +7,7 @@
   const ipsumMedia = [
     { name: 'Hamlet', giver: 'Benc', done: false },
     { name: 'Berzerk', giver: 'Chan Lean', done: false },
-    { name: 'Honey and Clover', giver: 'Mazin', done: true },
+    { name: 'Honey and Clover', giver: 'Mazin', done: false },
   ]
 
   mediaStore.set(ipsumMedia)

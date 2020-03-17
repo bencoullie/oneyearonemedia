@@ -9,7 +9,7 @@
       return good
     }
 
-    if (percentage > 25 && percentage < 75) {
+    if (percentage > 33 && percentage < 75) {
       return ok
     }
 
