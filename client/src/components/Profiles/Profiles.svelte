@@ -1,5 +1,7 @@
 <script>
   import Profile from '../Profile/Profile.svelte'
+  import PageLoading from '../PageLoading/PageLoading.svelte'
+  import PageError from '../PageError/PageError.svelte'
   import 'whatwg-fetch'
 
   async function fetchData() {
@@ -9,17 +11,32 @@
     if (res.ok) {
       return data
     } else {
+      // eslint-disable-next-line no-console
+      console.log('data:', data)
       throw new Error(data)
     }
   }
 </script>
 
+<style>
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px 10px;
+    max-width: 1250px;
+  }
+</style>
+
 {#await fetchData()}
-  <p>Loading...</p>
+  <PageLoading />
 {:then profiles}
-  {#each profiles as profile}
-    <Profile username={profile.name} />
-  {/each}
+  <div class="profiles-grid">
+    {#each profiles as profile}
+      <Profile username={profile.name} />
+    {/each}
+  </div>
 {:catch error}
-  <p style="color: red">{error.message}</p>
+  <PageError {error} />
 {/await}

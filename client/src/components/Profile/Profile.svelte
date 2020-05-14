@@ -27,14 +27,23 @@
   }
 </script>
 
-<div class="nes-container is-rounded is-dark">
-  <h1>{username}</h1>
-</div>
+<style>
+  .profile {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+</style>
 
-<section class="showcase">
-  <section class="nes-container with-title">
-    <h3 class="title is-disabled">Media</h3>
-    <MediaTable {media} />
-    <ProgressSection progressPercentage={getProgressPercentage(media)} />
+<div class="profile">
+  <div class="nes-container is-rounded is-dark">
+    <h1>{username}</h1>
+  </div>
+
+  <section class="showcase">
+    <section class="nes-container with-title">
+      <h3 class="title is-disabled">Media</h3>
+      <MediaTable {media} />
+      <ProgressSection progressPercentage={getProgressPercentage(media)} />
+    </section>
   </section>
-</section>
+</div>

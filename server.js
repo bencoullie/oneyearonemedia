@@ -10,7 +10,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 app.get("/api/getUsers", (req, res) => {
-  res.send([{ name: "Benc" }, { name: "Nicko" }])
+  setTimeout(() => {
+    res.send([{ name: "Benc" }, { name: "Nicko" }])
+  }, 2000)
+
+  // error example
+  // res.status(400).json("shits on fire yo")
 })
 
 app.post("/api/world", (req, res) => {
