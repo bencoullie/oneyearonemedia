@@ -1,3 +1,5 @@
+const { fakeUsers } = module.require("./fixtures")
+
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
@@ -11,7 +13,7 @@ app.use(cors())
 
 app.get("/api/getUsers", (req, res) => {
   setTimeout(() => {
-    res.send([{ name: "Benc" }, { name: "Nicko" }])
+    res.send(fakeUsers)
   }, 2000)
 
   // error example
