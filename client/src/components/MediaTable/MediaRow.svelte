@@ -1,21 +1,8 @@
 <script>
-  import { mediaStore } from '../../state/mediaStore'
-  export let name
-  export let giver
-  export let done
+  export let media
+  export let updateProfiles
 
-  const adaptMediaStore = name => {
-    mediaStore.update(oldStore => {
-      const clone = [...oldStore]
-
-      return clone.map(item => {
-        if (item.name === name) {
-          item.done = !item.done
-        }
-        return item
-      })
-    })
-  }
+  const { id, name, giver, done } = media
 </script>
 
 <tr>
@@ -27,7 +14,7 @@
         type="checkbox"
         class="nes-checkbox is-dark"
         checked={done}
-        on:change={() => adaptMediaStore(name)} />
+        on:change={() => updateProfiles(id)} />
       <span />
     </label>
   </td>

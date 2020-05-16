@@ -1,7 +1,7 @@
 <script>
-  import { mediaStore } from '../../state/mediaStore.js'
   import MediaRow from './MediaRow.svelte'
   export let media
+  export let updateProfiles
 </script>
 
 <style>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       {#each media as item}
-        <MediaRow name={item.name} giver={item.giver} done={item.done} />
+        <MediaRow media={item} {updateProfiles} />
       {/each}
     </tbody>
   </table>

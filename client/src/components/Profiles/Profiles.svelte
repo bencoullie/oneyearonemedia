@@ -2,14 +2,30 @@
   import Profile from '../Profile/Profile.svelte'
   import PageLoading from '../PageLoading/PageLoading.svelte'
   import PageError from '../PageError/PageError.svelte'
+  import cloneDeep from 'lodash/cloneDeep'
   import 'whatwg-fetch'
+  let profiles = []
+
+  const updateProfiles = mediaId => {
+    const clonedProfiles = cloneDeep(profiles)
+
+    clonedProfiles.forEach(profile => {
+      profile.media.forEach(item => {
+        if (item.id === mediaId) {
+          item.done = !item.done
+        }
+      })
+    })
+
+    profiles = clonedProfiles
+  }
 
   async function fetchData() {
     const res = await fetch('http://localhost:5001/api/getUsers')
     const data = await res.json()
 
     if (res.ok) {
-      return data
+      profiles = data
     } else {
       // eslint-disable-next-line no-console
       console.log('data:', data)
@@ -31,10 +47,10 @@
 
 {#await fetchData()}
   <PageLoading />
-{:then profiles}
+{:then}
   <div class="profiles-grid">
     {#each profiles as profile}
-      <Profile username={profile.name} />
+      <Profile username={profile.name} media={profile.media} {updateProfiles} />
     {/each}
   </div>
 {:catch error}
