@@ -6,7 +6,7 @@
   import 'whatwg-fetch'
   let profiles = []
 
-  const updateProfiles = mediaId => {
+  const toggleMediaDoneStatus = mediaId => {
     const clonedProfiles = cloneDeep(profiles)
 
     clonedProfiles.forEach(profile => {
@@ -27,8 +27,6 @@
     if (res.ok) {
       profiles = data
     } else {
-      // eslint-disable-next-line no-console
-      console.log('data:', data)
       throw new Error(data)
     }
   }
@@ -50,7 +48,10 @@
 {:then}
   <div class="profiles-grid">
     {#each profiles as profile}
-      <Profile username={profile.name} media={profile.media} {updateProfiles} />
+      <Profile
+        username={profile.name}
+        media={profile.media}
+        {toggleMediaDoneStatus} />
     {/each}
   </div>
 {:catch error}

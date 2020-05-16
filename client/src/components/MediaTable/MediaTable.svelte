@@ -1,7 +1,7 @@
 <script>
   import MediaRow from './MediaRow.svelte'
   export let media
-  export let updateProfiles
+  export let toggleMediaDoneStatus
 </script>
 
 <style>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       {#each media as item}
-        <MediaRow media={item} {updateProfiles} />
+        <MediaRow media={item} {toggleMediaDoneStatus} />
       {/each}
     </tbody>
   </table>

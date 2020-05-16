@@ -3,7 +3,7 @@
   import ProgressSection from './ProgressSection.svelte'
   export let username
   export let media
-  export let updateProfiles
+  export let toggleMediaDoneStatus
 
   const getProgressPercentage = media => {
     const totalNumberOfMedia = media.length
@@ -30,7 +30,7 @@
   <section class="showcase">
     <section class="nes-container with-title">
       <h3 class="title is-disabled">Media</h3>
-      <MediaTable {media} {updateProfiles} />
+      <MediaTable {media} {toggleMediaDoneStatus} />
       <ProgressSection progressPercentage={getProgressPercentage(media)} />
     </section>
   </section>

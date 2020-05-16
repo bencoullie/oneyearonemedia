@@ -1,6 +1,6 @@
 <script>
   export let media
-  export let updateProfiles
+  export let toggleMediaDoneStatus
 
   const { id, name, giver, done } = media
 </script>
@@ -14,7 +14,7 @@
         type="checkbox"
         class="nes-checkbox is-dark"
         checked={done}
-        on:change={() => updateProfiles(id)} />
+        on:change={() => toggleMediaDoneStatus(id)} />
       <span />
     </label>
   </td>
