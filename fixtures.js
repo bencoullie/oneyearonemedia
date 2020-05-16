@@ -17,6 +17,15 @@ const fakeUsers = [
       { id: 6, name: "Honey and Clover", giver: "Mazin", done: false },
     ],
   },
+  {
+    id: 789,
+    name: "Chan Lean",
+    media: [
+      { id: 7, name: "Hell Is Other People", giver: "Benc", done: true },
+      { id: 8, name: "The Hobbit", giver: "Nicko", done: true },
+      { id: 9, name: "Made in Abyss", giver: "Mazin", done: false },
+    ],
+  },
 ]
 
 module.exports.fakeUsers = fakeUsers

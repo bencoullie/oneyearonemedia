@@ -12,9 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 app.get("/api/getUsers", (req, res) => {
-  setTimeout(() => {
-    res.send(fakeUsers)
-  }, 2000)
+  res.send(fakeUsers)
 
   // error example
   // res.status(400).json("shits on fire yo")
