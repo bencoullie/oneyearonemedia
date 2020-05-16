@@ -35,17 +35,32 @@
 <style>
   .profiles-grid {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     justify-content: space-between;
     margin: 0 auto;
     padding: 20px 10px;
-    max-width: 1250px;
+    max-width: 1600px;
   }
 </style>
 
 {#await fetchData()}
   <PageLoading />
 {:then}
+  <style>
+    .title {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .title-text {
+      position: relative;
+      bottom: 14px;
+    }
+  </style>
+  <h1 class="title">
+    <i class="nes-icon is-large heart" />
+    <span class="title-text">Profiles</span>
+    <i class="nes-icon is-large is-half heart" />
+  </h1>
   <div class="profiles-grid">
     {#each profiles as profile}
       <Profile

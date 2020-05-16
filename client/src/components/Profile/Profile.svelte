@@ -19,17 +19,25 @@
   .profile {
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .username-box {
+    margin-bottom: 20px;
+  }
+
+  .nes-container {
+    padding: 2em;
   }
 </style>
 
 <div class="profile">
-  <div class="nes-container is-rounded is-dark">
+  <div class="username-box nes-container is-rounded">
     <h1>{username}</h1>
   </div>
 
-  <section class="showcase">
-    <section class="nes-container with-title">
-      <h3 class="title is-disabled">Media</h3>
+  <section class="showcase is-rounded">
+    <section class="nes-container">
       <MediaTable {media} {toggleMediaDoneStatus} />
       <ProgressSection progressPercentage={getProgressPercentage(media)} />
     </section>

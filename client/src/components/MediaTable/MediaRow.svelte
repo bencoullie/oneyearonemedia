@@ -12,7 +12,7 @@
     <label>
       <input
         type="checkbox"
-        class="nes-checkbox is-dark"
+        class="nes-checkbox"
         checked={done}
         on:change={() => toggleMediaDoneStatus(id)} />
       <span />

@@ -6,12 +6,16 @@
 
 <style>
   table {
-    width: calc(100% - 4px);
+    width: calc(100% - 8px);
+  }
+
+  .nes-table-responsive {
+    margin-bottom: 24px;
   }
 </style>
 
 <div class="nes-table-responsive">
-  <table class="nes-table is-bordered is-dark">
+  <table class="nes-table is-bordered">
     <thead>
       <tr>
         <th>To Do</th>

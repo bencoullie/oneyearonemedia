@@ -17,7 +17,12 @@
   }
 </script>
 
-`
+<style>
+  progress {
+    width: calc(100% - 8px);
+  }
+</style>
+
 <progress
   class={`nes-progress ${getCurrentStatus(progressPercentage)}`}
   value={progressPercentage}
