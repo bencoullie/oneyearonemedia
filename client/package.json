@@ -12,13 +12,13 @@
     "node-sass": "^4.13.1",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
     "svelte": "^3.0.0",
-    "svelte-preprocess": "^3.5.0"
+    "svelte-preprocess": "^3.5.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "@rollup/plugin-replace": "^2.3.2"
   },
   "dependencies": {
-    "@rollup/plugin-replace": "^2.3.2",
     "lodash": "^4.17.15",
     "nes.css": "^2.3.0",
     "prettier": "^1.19.1",
