@@ -20,6 +20,7 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
+    min-width: 500px;
   }
 
   .username-box {

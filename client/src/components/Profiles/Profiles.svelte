@@ -41,6 +41,12 @@
     padding: 20px 10px;
     max-width: 1600px;
   }
+
+  @media (max-width: 1075px) {
+    .profiles-grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
 </style>
 
 {#await fetchData()}
