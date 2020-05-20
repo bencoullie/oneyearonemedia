@@ -21,7 +21,7 @@
   }
 
   async function fetchData() {
-    const res = await fetch('http://localhost:5001/api/getUsers')
+    const res = await fetch('__serverBaseUrl__/api/getUsers')
     const data = await res.json()
 
     if (res.ok) {
