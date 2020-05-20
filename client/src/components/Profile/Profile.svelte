@@ -20,15 +20,33 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
-    min-width: 500px;
+    min-width: 400px;
   }
 
   .username-box {
     margin-bottom: 20px;
+    background: #ffd1dc;
   }
 
   .nes-container {
     padding: 2em;
+    background: #ffd1dc;
+  }
+
+  @media (max-width: 1075px) {
+    .profile {
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 10px;
+    }
+
+    .username-box {
+      margin-bottom: 10px;
+    }
+
+    .nes-container {
+      padding: 1em;
+    }
   }
 </style>
 

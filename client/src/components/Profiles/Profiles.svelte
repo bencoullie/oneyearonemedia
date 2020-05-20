@@ -46,6 +46,10 @@
     .profiles-grid {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
+
+    :global(body) {
+      font-size: 12px;
+    }
   }
 </style>
 

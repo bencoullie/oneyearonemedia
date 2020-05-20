@@ -21,6 +21,22 @@
   progress {
     width: calc(100% - 8px);
   }
+
+  .nes-progress::-webkit-progress-bar {
+    background-color: #fff;
+  }
+
+  .nes-progress::-webkit-progress-value {
+    background-color: #d1fff4;
+  }
+
+  .nes-progress::-moz-progress-bar {
+    background-color: #d1fff4;
+  }
+
+  .nes-progress::-ms-fill {
+    background-color: #d1fff4;
+  }
 </style>
 
 <progress
