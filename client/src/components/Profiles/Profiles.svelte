@@ -20,12 +20,44 @@
     profiles = clonedProfiles
   }
 
+  const buildProfiles = profileData => {
+    const profiles = profileData.reduce((accumulator, row) => {
+      const existingProfile = accumulator.find(profile => profile.id === row.consumer_id)
+
+      if (existingProfile) {
+        const newMedia = {
+          id: row.media_id,
+          name: row.media_name,
+          giver: row.giver_name,
+          done: row.completed
+        }
+        existingProfile.media.push(newMedia)
+      } else {
+        const profile = {
+            id: row.consumer_id,
+            name: row.consumer_name,
+            media: [{
+              id: row.media_id,
+              name: row.media_name,
+              giver: row.giver_name,
+              done: row.completed
+            }]
+        }
+        accumulator.push(profile)
+      }
+
+      return accumulator
+    }, [])
+
+    return profiles
+  }
+
   async function fetchData() {
-    const res = await fetch('__serverBaseUrl__/api/getUsers')
-    const data = await res.json()
+    const res = await fetch('__serverBaseUrl__/api/profiles')
 
     if (res.ok) {
-      profiles = data
+      const data = await res.json()
+      profiles = buildProfiles(data)
     } else {
       throw new Error(data)
     }

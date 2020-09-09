@@ -7,6 +7,33 @@ const pool = new Pool({
   port: 5432,
 })
 
+const getProfiles = (request, response) => {
+  const query = `
+    SELECT
+      p.person_name as consumer_name,
+    pm.consumer_id,
+    pm.media_id,
+      pm.completed,
+      p2.person_name as giver_name,
+      m.media_name
+    FROM
+      person p
+    INNER JOIN
+      person_media pm ON (p.person_id = pm.consumer_id)
+    INNER JOIN
+      person p2 ON (p2.person_id = pm.giver_id)
+    INNER JOIN
+      media m ON (pm.media_id = m.media_id)
+  `
+
+  pool.query(query, (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getPerson = (request, response) => {
   pool.query('SELECT * FROM person ORDER BY id ASC', (error, results) => {
     if (error) {
@@ -70,5 +97,6 @@ module.exports = {
   getPersonById,
   createPerson,
   updatePerson,
-  deletePerson
+  deletePerson,
+  getProfiles
 }

@@ -20,5 +20,4 @@
     <i class="nes-octocat animate" />
     <h2 class="loading-text">loading...</h2>
   </div>
-
 </div>

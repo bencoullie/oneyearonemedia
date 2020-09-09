@@ -16,6 +16,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`))
 
 // Endpoints
 app.get("/api/getUsers", (req, res) => res.send(fakeUsers))
+app.get("/api/profiles", (db.getProfiles))
 app.get('/users', db.getPerson)
 app.get('/users/:id', db.getPersonById)
 app.post('/users', db.createPerson)
