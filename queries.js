@@ -11,8 +11,8 @@ const getProfiles = (request, response) => {
   const query = `
     SELECT
       p.person_name as consumer_name,
-    pm.consumer_id,
-    pm.media_id,
+      pm.consumer_id,
+      pm.media_id,
       pm.completed,
       p2.person_name as giver_name,
       m.media_name
