@@ -1,10 +1,12 @@
+const dotenv = require("dotenv");
 const Pool = require('pg').Pool
+dotenv.config();
 const pool = new Pool({
-  user: 'Ben',
-  host: 'localhost',
-  database: 'oneyearonemedia',
-  password: 'password',
-  port: 5432,
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
 })
 
 const getProfiles = (request, response) => {
