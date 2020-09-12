@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
-const Pool = require('pg').Pool
-dotenv.config();
+const dotenv = require("dotenv")
+const Pool = require("pg").Pool
+dotenv.config()
 const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
@@ -37,7 +37,7 @@ const getProfiles = (request, response) => {
 }
 
 const getPerson = (request, response) => {
-  pool.query('SELECT * FROM person ORDER BY id ASC', (error, results) => {
+  pool.query("SELECT * FROM person ORDER BY id ASC", (error, results) => {
     if (error) {
       throw error
     }
@@ -48,7 +48,7 @@ const getPerson = (request, response) => {
 const getPersonById = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('SELECT * FROM person WHERE id = $1', [id], (error, results) => {
+  pool.query("SELECT * FROM person WHERE id = $1", [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -59,7 +59,7 @@ const getPersonById = (request, response) => {
 const createPerson = (request, response) => {
   const { name } = request.body
 
-  pool.query('INSERT INTO person (name) VALUES ($1)', [name], (error, results) => {
+  pool.query("INSERT INTO person (name) VALUES ($1)", [name], (error, results) => {
     if (error) {
       throw error
     }
@@ -71,26 +71,39 @@ const updatePerson = (request, response) => {
   const id = parseInt(request.params.id)
   const { name } = request.body
 
-  pool.query(
-    'UPDATE Person SET name = $1 WHERE id = $2',
-    [name, id],
-    (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`Person modified with ID: ${id}`)
+  pool.query("UPDATE Person SET name = $1 WHERE id = $2", [name, id], (error, results) => {
+    if (error) {
+      throw error
     }
-  )
+    response.status(200).send(`Person modified with ID: ${id}`)
+  })
 }
 
 const deletePerson = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('DELETE FROM person WHERE id = $1', [id], (error, results) => {
+  pool.query("DELETE FROM person WHERE id = $1", [id], (error, results) => {
     if (error) {
       throw error
     }
     response.status(200).send(`Person deleted with ID: ${id}`)
+  })
+}
+
+const toggleMediaStatus = (request, response) => {
+  const { consumerId, mediaId } = request.body
+  const query = `
+    UPDATE person_media
+    SET completed = NOT completed
+    WHERE consumer_id = $1
+    AND media_id = $2;
+  `
+
+  pool.query(query, [consumerId, mediaId], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(`Completed status updated!`)
   })
 }
 
@@ -100,5 +113,6 @@ module.exports = {
   createPerson,
   updatePerson,
   deletePerson,
-  getProfiles
+  getProfiles,
+  toggleMediaStatus,
 }

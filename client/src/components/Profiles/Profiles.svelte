@@ -6,42 +6,70 @@
   import 'whatwg-fetch'
   let profiles = []
 
-  const toggleMediaDoneStatus = mediaId => {
-    const clonedProfiles = cloneDeep(profiles)
+  const persistStatusToggle = async (consumerId, mediaId) => {
+    const url = '__serverBaseUrl__/api/toggleMediaStatus'
+    const body = { consumerId, mediaId }
 
-    clonedProfiles.forEach(profile => {
-      profile.media.forEach(item => {
-        if (item.id === mediaId) {
-          item.done = !item.done
-        }
-      })
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     })
 
-    profiles = clonedProfiles
+    if (response.ok) {
+      return true
+    } else {
+      throw new Error('Unable to persist media compelted status change')
+    }
+  }
+
+  const generateMediaStatusToggler = profileId => {
+    const toggleMediaDoneStatus = async mediaId => {
+      const clonedProfiles = cloneDeep(profiles)
+      const persistSucceeded = await persistStatusToggle(profileId, mediaId)
+
+      if (persistSucceeded) {
+        clonedProfiles.forEach(profile => {
+          profile.media.forEach(item => {
+            if (item.id === mediaId) {
+              item.done = !item.done
+            }
+          })
+        })
+
+        profiles = clonedProfiles
+      }
+    }
+
+    return toggleMediaDoneStatus
   }
 
   const buildProfiles = profileData => {
     const profiles = profileData.reduce((accumulator, row) => {
-      const existingProfile = accumulator.find(profile => profile.id === row.consumer_id)
+      const existingProfile = accumulator.find(
+        profile => profile.id === row.consumer_id
+      )
 
       if (existingProfile) {
         const newMedia = {
           id: row.media_id,
           name: row.media_name,
           giver: row.giver_name,
-          done: row.completed
+          done: row.completed,
         }
         existingProfile.media.push(newMedia)
       } else {
         const profile = {
-            id: row.consumer_id,
-            name: row.consumer_name,
-            media: [{
+          id: row.consumer_id,
+          name: row.consumer_name,
+          media: [
+            {
               id: row.media_id,
               name: row.media_name,
               giver: row.giver_name,
-              done: row.completed
-            }]
+              done: row.completed,
+            },
+          ],
         }
         accumulator.push(profile)
       }
@@ -53,10 +81,10 @@
   }
 
   async function fetchData() {
-    const res = await fetch('__serverBaseUrl__/api/profiles')
+    const response = await fetch('__serverBaseUrl__/api/profiles')
 
-    if (res.ok) {
-      const data = await res.json()
+    if (response.ok) {
+      const data = await response.json()
       profiles = buildProfiles(data)
     } else {
       throw new Error(data)
@@ -108,7 +136,7 @@
       <Profile
         username={profile.name}
         media={profile.media}
-        {toggleMediaDoneStatus} />
+        toggleMediaDoneStatus={generateMediaStatusToggler(profile.id)} />
     {/each}
   </div>
 {:catch error}
