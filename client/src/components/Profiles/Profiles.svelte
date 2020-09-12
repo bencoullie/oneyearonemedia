@@ -3,6 +3,7 @@
   import PageLoading from '../PageLoading/PageLoading.svelte'
   import PageError from '../PageError/PageError.svelte'
   import cloneDeep from 'lodash/cloneDeep'
+  import orderBy from 'lodash/orderBy'
   import 'whatwg-fetch'
   let profiles = []
 
@@ -45,7 +46,7 @@
   }
 
   const buildProfiles = profileData => {
-    const profiles = profileData.reduce((accumulator, row) => {
+    const unorderedProfiles = profileData.reduce((accumulator, row) => {
       const existingProfile = accumulator.find(
         profile => profile.id === row.consumer_id
       )
@@ -77,7 +78,9 @@
       return accumulator
     }, [])
 
-    return profiles
+    const orderedProfiles = orderBy(unorderedProfiles, ['name'], ['asc'])
+
+    return orderedProfiles
   }
 
   async function fetchData() {
