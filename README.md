@@ -15,3 +15,6 @@ It can be a book, movie, video game, album, youtube meme compilation - pretty mu
 Example: I give my partner Life is Strange (the video game) and they give me Dune (the book). We have to finish the media within the year (media must be given by end of January and finished before January first the following year).
 
 This app just gives an interface for that interaction 💦
+
+## WIP demo site
+https://oneyearonemedia.netlify.app/
