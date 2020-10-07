@@ -31,11 +31,13 @@
 
       if (persistSucceeded) {
         clonedProfiles.forEach(profile => {
-          profile.media.forEach(item => {
-            if (item.id === mediaId) {
-              item.done = !item.done
-            }
-          })
+          if (profile.id === profileId) {
+            profile.media.forEach(item => {
+              if (item.id === mediaId) {
+                item.done = !item.done
+              }
+            })
+          }
         })
 
         profiles = clonedProfiles
