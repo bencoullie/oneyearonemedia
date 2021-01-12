@@ -4,7 +4,7 @@
 
 ## What is this?
 
-It's an app to enable the (forced) sharing of media reccomendations. Make your friends consume the media you love - it's great.
+It's an Express + Svelte app to enable the (forced) sharing of media reccomendations. Make your friends consume the media you love - it's great.
 
 ## What are the rules?
 
